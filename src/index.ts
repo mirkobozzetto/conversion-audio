@@ -54,6 +54,8 @@ const convertHandler: RequestHandler = async (req, res) => {
 
 app.post("/convert", convertHandler);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+server.timeout = 60000;
