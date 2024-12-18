@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 
 app.use(
   cors({
-    origin: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:4000",
+    origin: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
     methods: ["POST"],
     credentials: true,
   })
@@ -17,6 +17,7 @@ app.use(
 app.use(
   express.raw({
     type: ["audio/webm", "audio/aac", "audio/*"],
+    limit: "25mb",
   })
 );
 

@@ -3,7 +3,7 @@ FROM node:20-slim as builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=dev
 
 COPY . .
 RUN npm run build
@@ -18,8 +18,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
 COPY package*.json ./
-RUN npm install --production
 
 EXPOSE 4000
 
